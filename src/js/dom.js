@@ -1,3 +1,4 @@
+
 function createForm() {
   const form = document.createElement('form');
 
@@ -21,6 +22,7 @@ function createForm() {
   bookRead.setAttribute('type', 'checkbox');
 
   const submitButton = document.createElement('button');
+  submitButton.setAttribute('id', 'submit-btn');
   submitButton.setAttribute('type', 'submit');
   submitButton.innerHTML = 'New Book';
 
@@ -33,8 +35,20 @@ function createForm() {
   return form;
 }
 
-function createTable() {}
+function createTable() {
+  const table = document.createElement('table');
+  const tableHead = document.createElement('tableHead');
+  tableHead.innerHTML = '<th>Title</th><th>Author</th><th>Pages</th><th>Read</th>';
+  table.appendChild(tableHead);
+  return table;
+}
 
-function createTableRows() {}
+function createTableRows() {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td>`;
+  tr.appendChild(tr);
+  return tr;
+}
+
 
 export { createForm, createTable, createTableRows };
