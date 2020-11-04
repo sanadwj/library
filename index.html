@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
     <title>Libro</title>
 </head>
 <body>
-    <label for="title">Book Title</label>
-    <input type="text" id="title" placeholder="Book Title">
+    <div class="col">
+        <label for="title">Book Title</label>
+        <input type="text" id="title" placeholder="Book Title">
+    </div>
+    <div class="col">
+        <label for="author">Author</label>
+        <input type="text" id="author" placeholder="Book Author">
+    </div>
+    <div class="col">
 
-    <label for="author">Author</label>
-    <input type="text" id="author" placeholder="Book Author">
+        <label for="pages">Pages</label>
+        <input type="number" id="pages" placeholder="Pages">
+    </div>
+    <div class="col">
+        <label for="read">Read</label>
+        <input type="checkbox" name="Book Read" id="read">
+    </div>
+    <div class="col">
+        <button type="submit" onclick='addBookToLibrary()'>New Book</button>
+    </div>
+    
 
-    <label for="pages">Pages</label>
-    <input type="number" id="pages" placeholder="Pages">
 
-    <label for="read">Read</label>
-    <input type="checkbox" name="Book Read" id="read">
 
-    <button type="submit" onclick='addBookToLibrary()'>New Book</button>
-
-    <table>
-        <thead>
-            <tr>
+    <table class="container">
+        <thead >
+            <tr class="head">
                 <th>Title</th>
                 <th>Author</th>
                 <th>Pages</th>

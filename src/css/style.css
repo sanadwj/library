@@ -1,0 +1,49 @@
+html, body {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.col {
+  display: flex;
+  
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+label {
+  margin: 1em;
+  text-align: start;
+}
+
+input {
+  height: 2em;
+}
+
+.container {
+  width: 100%;
+  margin: 2em;
+}
+
+#read {
+  height: 40px;
+ 
+}
+
+.head {
+  border: 2px solid black;
+  margin: 2em;
+}
+
+button {
+  height: 3em;
+
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
