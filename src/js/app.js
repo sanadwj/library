@@ -4,9 +4,7 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read
-  
-  
+  this.read = read;
 }
 
 const addBookToLibrary = () => {
@@ -27,39 +25,36 @@ const tableBody = document.querySelector('.table-body');
 const renderBook = () => {
   myLibrary = JSON.parse(localStorage.getItem('data-store'));
   if (myLibrary.length > 0) {
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (let i = 0; i < myLibrary.length; i += 1) {
       const tableRow = document.createElement('tr');
       const book = myLibrary[i];
-      let readStatus = ""
+      let readStatus = '';
       if (book.read) {
-        readStatus = "Read"
-      }else {
-        readStatus = "Not Read"
+        readStatus = 'Read';
+      } else {
+        readStatus = 'Not Read';
       }
       tableRow.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td><button onclick="updateRead(${i})">${readStatus}</button></td>`;
       tableRow.innerHTML += `<td><a href="#" class='delete' onclick="removeBook(${i})"=>Delete Book</a></td>`;
-    
       tableBody.appendChild(tableRow);
     }
-  }else {
+  } else {
     const tableColSpan = document.createElement('tr');
-    tableColSpan.colSpan = "4";
-    tableColSpan.innerHTML = `<td><No Books Added </td>`
+    tableColSpan.colSpan = '4';
+    tableColSpan.innerHTML = '<td><No Books Added </td>';
     tableBody.appendChild(tableColSpan);
   }
 };
 
 const updateRead = (idx) => {
   myLibrary = JSON.parse(localStorage.getItem('data-store'));
-  let currentBook = myLibrary[idx];
-  let currentStatus = currentBook.read;
+  const currentBook = myLibrary[idx];
+  const currentStatus = currentBook.read;
   const newStatus = !currentStatus;
   currentBook.read = newStatus;
   localStorage.setItem('data-store', JSON.stringify(myLibrary));
-  window.location.reload()
-
-}
-
+  window.location.reload();
+};
 
 
 const removeBook = (idx) => {
@@ -72,4 +67,3 @@ const removeBook = (idx) => {
 window.onload = () => {
   renderBook();
 };
-console.log(myLibrary);
