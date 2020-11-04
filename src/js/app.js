@@ -4,11 +4,8 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  if (read) {
-      this.read = "Read"
-  } else {
-    this.read = "Unread";
-  }
+  this.read = read
+  
   
 }
 
@@ -29,14 +26,41 @@ const tableBody = document.querySelector('.table-body');
 
 const renderBook = () => {
   myLibrary = JSON.parse(localStorage.getItem('data-store'));
-  for (let i = 0; i < myLibrary.length; i++) {
-    const tableRow = document.createElement('tr');
-    const book = myLibrary[i];
-    tableRow.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td>`;
-    tableRow.innerHTML += `<td><a href="#" class='delete' onclick="removeBook(${i})"=>Delete Book</a></td>`;
-    tableBody.appendChild(tableRow);
+  if (myLibrary.length > 0) {
+    for (let i = 0; i < myLibrary.length; i++) {
+      const tableRow = document.createElement('tr');
+      const book = myLibrary[i];
+      let readStatus = ""
+      if (book.read) {
+        readStatus = "Read"
+      }else {
+        readStatus = "Not Read"
+      }
+      tableRow.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td><button onclick="updateRead(${i})">${readStatus}</button></td>`;
+      tableRow.innerHTML += `<td><a href="#" class='delete' onclick="removeBook(${i})"=>Delete Book</a></td>`;
+    
+      tableBody.appendChild(tableRow);
+    }
+  }else {
+    const tableColSpan = document.createElement('tr');
+    tableColSpan.colSpan = "4";
+    tableColSpan.innerHTML = `<td><No Books Added </td>`
+    tableBody.appendChild(tableColSpan);
   }
 };
+
+const updateRead = (idx) => {
+  myLibrary = JSON.parse(localStorage.getItem('data-store'));
+  let currentBook = myLibrary[idx];
+  let currentStatus = currentBook.read;
+  const newStatus = !currentStatus;
+  currentBook.read = newStatus;
+  localStorage.setItem('data-store', JSON.stringify(myLibrary));
+  window.location.reload()
+
+}
+
+
 
 const removeBook = (idx) => {
   myLibrary = JSON.parse(localStorage.getItem('data-store'));
